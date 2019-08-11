@@ -14,9 +14,10 @@ public class Route {
 
         try {
 
-            // get requests
+            // read requests
             get("/hello", (req, res) -> "Hello World");
 
+            get("/server", (req, res) -> "ws://192.168.0.149:8080/service");
 
         } catch (Exception ex) {
             // ignored

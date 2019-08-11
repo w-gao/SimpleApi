@@ -3,12 +3,12 @@ package space.wgao.simpleapi;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import space.wgao.simpleapi.routes.Route;
+import space.wgao.simpleapi.socket.ServiceSocketHandler;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import static spark.Spark.port;
-import static spark.Spark.stop;
+import static spark.Spark.*;
 
 /**
  * SimpleApi
@@ -31,7 +31,11 @@ public class SimpleApi {
 
     private void launch() {
 
-        port(8000);
+        port(8080);
+
+        staticFileLocation("public");
+
+        webSocket("/service", ServiceSocketHandler.class);
 
         Route.init();
 
